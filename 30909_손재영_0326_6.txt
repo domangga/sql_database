@@ -1,0 +1,11 @@
+30909_손재영_0326_6
+
+decs [테이블명];  //특정 테이블(표)이 어떤 열로 구성되어 있는지 확인
+select [열이름] from [테이블명];  //테이블의 열 내용을 조회하는데 사용
+
+set linesize 300; //라인의 너비 조정
+
+clear screen; //화면을 깨끗하게
+
+select * from jobs
+order by min_salary desc;
