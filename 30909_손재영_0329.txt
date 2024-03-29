@@ -1,0 +1,50 @@
+30909_손재영_0329_2
+
+1. 시작메뉴
+2. 'cmd' 입력
+3. 'sqlplus' 입력
+4.  system/1234
+5. sql> 나오면 시작  //sql시스템에 접속
+------------------------------------------------
+  1 alter user hr
+  2  identified by hr
+    account unlock;        //hr 활성화
+------------------------------------------------
+ 1  conn hr/hr;     //hr 연결(로그인)
+
+문제 7>jobs 테이블에서 min_salary 값이5000이하 이고 max_salry값10000이상인 job_id 을 출력하시오.
+
+SQL> select job_id from jobs
+  2  where min_salary<=5000 and max_salary>=10000;
+
+문제 8> jobs테이블에서 min_salary값이 5000 이하 이거나 max_salary값이 10000 이상인 job_id 을 출렷하시오
+
+SQL> select job_title from jobs
+  2  where min_salary<5000 or max_salary>9000;
+
+문제 9>job_title 이 Programmer 인 행전체를 출력하시오
+
+SQL> select * from jobs
+  2  where job_title='Programmer';
+
+문제 10>job_title 이 Programmer,Manager 인 행전체를 출력하시오
+
+SQL> select * from jobs
+  2  where job_title='Programmer' or job_title='Marketing Manager';
+
+
+문제11>문제10문제를 in 명령을 이여해 작성하시오
+
+SQL> select * from jobs
+  2  where job_title in('Programmer','Marke ting Manager');
+
+문제12>max_salary값이 10000이상 15000이하 job_title을 출력하시오
+
+SQL> select job_title from jobs
+  2  where max_salary between 10000 and 15000;
+
+SQL> select job_title from jobs
+  2  where max_salary >=10000 and max_salary<=15000;
+
+
+union //명령을 더 내릴수있음
