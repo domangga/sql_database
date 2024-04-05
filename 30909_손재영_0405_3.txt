@@ -1,0 +1,19 @@
+30909_손재영_0405_3
+
+substr : 문자(문장)의 일굴자를 추출하는 함수.
+예)substr(열, 1, 2)
+
+length: 문자(문장)의 글자수를 추출하는 함수
+
+문제16> jobs테이블에서 job_title의 글자수를 세어주는 열을 별도록 만들어 출력하시오
+
+SQL> select job_title,length(job_title)from jobs;
+
+문제17> jobs테이블에서 job_title의 글자를 앞에서부터 2자리만 출력하시오
+
+SQL> job_title, substr(job_title,1,2) from jobs;
+
+
+replace 함수
+1 select 'Programmer' as before replace('Programmer','mer','')as first
+2 replace('Programmer','mm','nn')as second from jobs;
