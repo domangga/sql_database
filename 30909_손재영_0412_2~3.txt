@@ -1,0 +1,45 @@
+30909_손재영_0412_2~3
+문제18>job_title열 max_salary열의 데이터를 합쳐 'before'멸칭의 열로 출력하고 
+중간에 ':'을 낳아서'after'별핑을 열로 출력
+
+concat() == ||
+
+select concat(job_title,max_salary)as before,concat(job_title,concat(':',max_salary)) as after from jobs;
+
+select job_title || min_salary as before,job_title || ':' || min_salary as after from jobs;
+
+
+round 함수 반올림 처리 함수
+
+예 1234.5678
+
+	-1 :자연수 첫번쨰 자리를 0 =1230
+	-2 :자연수 첫번쨰 자리를 0 =1200
+	-3 :자연수 첫번쨰 자리를 0 =1000
+	 0 :자연수 첫번쨰 자리를 0 =1235
+	 1 :자연수 첫번쨰 자리를 0 =1234.6
+	 2 :자연수 첫번쨰 자리를 0 =1234.57
+	 3 :자연수 첫번쨰 자리를 0 =1234.568	
+
+select min_salary as before, round(min_salary/3.4,2),round(min_salary/3.4,0),round(min_salary/3.14,-2) from jobs;
+
+
+sysdate함수 : 날짜 데이터를 다루는 날짜 함수
+
+select sysdate as now, sysdate-1 as yesterday,
+sysdate+1 as tomorrow from job_history;
+
+mod 함수 //나머지를 구하는 함수
+select max_salary,mod(max_salary,3.14)as half from jobs;
+
+add_months함수 :몇개월 이후 날짜를 구하는 함수
+                                                     날짜
+select sysdate as now, add_months(sysdate, 3 )
+from job_history;
+
+months_between함수 : 두날짜 간의 개월 수 차이를 구하는 함수
+select start_date,end_datemonths_between(end_date,start_date)as exep
+from job_history;
+
+select start_date,end_date,round(months_between(end_date,start_date),0)as exep
+from job_history;
