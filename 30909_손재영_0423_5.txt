@@ -1,0 +1,24 @@
+기본 날짜 구하기
+SQL> select start_date, to_char(start_date,'mm')as mm,
+  2  to_char(start_date,'month')as month,
+  3  to_char(start_date,'dd')as dd,
+  4  to_char(start_date,'dy')as dy,
+  5  to_char(start_date,'day')as day,
+  6  to_char(start_date,'w')as w,
+  7  to_char(start_date,'cc')as cc
+  8  from job_history;
+
+일본어 변형
+SQL> select start_date,
+  2  to_char(start_date,'month','nls_date_language=japanese')as jap,
+  3  to_char(start_date,'dd','nls_date_language=japanese')as dd,
+  4  to_char(start_date,'dy','nls_date_language=japanese')as dy,
+  5  to_char(start_date,'day','nls_date_language=japanese')as day,
+  6  to_char(start_date,'w','nls_date_language=japanese')as w,
+  7  to_char(start_date,'cc','nls_date_language=japanese')as cc
+  8  from job_history;
+
+
+to_char(start_date,'month','nls_date_language=korean')as kor, 한국어 번역
+to_char(start_date,'month','nls_date_language=japanese')as jap, 일본어 번역
+to_char(start_date,'month','nls_date_language=english')as eng, 영어 번역
