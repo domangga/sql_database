@@ -1,0 +1,16 @@
+group by 함수 :결과 값을 원하는 열로 묶어 풀력하는 함수
+
+select 조회할 열1, 열2...열n
+from 조회할 테이블
+where 조회할 행을 선벼로하는 조건식
+group byt 그룹화할 열을 지정
+order by 정렬하려는 열 지정
+
+데이터 조작어 DML 데이터를 푸가 수정 삭제하는 조작어
+텡블 생성하기
+
+Create table fatboy
+	as Select * from jobs;
+
+테이블에 데이터를 추가하는  insert 문
+SQL> insert into fatboy(job_id,job_title,min_salary,max_salary)values ('AD_PRES','KING',20000,400000);
