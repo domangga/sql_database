@@ -1,0 +1,260 @@
+
+★함수 : 특정한 결과 값을 얻기 위해 데이터를 입력할 수 있는
+특수 명령어로, 내장함수(이미 만들어져 있는)와 사용자 정의함수(직접 만드는)가 있다. 
+
+
+문제12> jobs테이블에서
+ job_title 데이터를 모두 대문자로 바꾸어 출력하시오
+
+select job_title, upper(job_title) from jobs;  // 1. upper 소문자--->대문자
+                                                          2. 새로운 열을 생성
+문제13> jobs테이블에서
+ job_id 데이터를 모두 소문자로 바꾸고 새로운 열도 함께 출력하시오.
+     lower : 대문자--->소문자
+select job_id, lower(job_id) from jobs;
+
+문제14> jobs테이블에서
+ job_id 데이터의 첫글자만 대문자로 출력하시오.
+   initcap--->첫글자만 대문자로 출력
+select job_id, initcap(job_id) from jobs;
+
+
+문제15>  select upper(job_title), lower(job_id), initcap(job_title) from jobs;
+ 
+//새로운 열생성
+
+
+문제14> jobs테이블에서 max_salary열과  max_salaryr값에 2를 곱한값의 열을
+생성하여 출력하시오
+
+문제15> jobs테이블에서 job_title의 글자수를 세어주는 함수를 사용해서 새로운 테이블을 출력하시오.
+ select  job_title,  length( job_title)  from jobs;//
+
+
+★length : 문자(문장)의 글자수를
+추출하는 함수.  
+문제16> jobs테이블에서 job_title의 글자수를  세어주는 열을 별도로 만들어 출력하시오.
+select  job_title, length( job_title) from jobs;
+
+
+★ substr : 문자(문장)의 일부글자를
+추출하는 함수.  
+예) substr(열, 1, 2)
+
+문제17> jobs테이블에서 job_title의 글자를 앞에서 4번째부터 시작해서 5자리를 출력하시오.
+
+select  job_title, substr( job_title, 4, 5) from jobs;
+
+
+★ replace함수  //  1. 글자를 바꿀때 사용 2. 별칭  as
+문제>jobs테이블의 job_title 에 있는 데이터 중 Sales이라는 단어를 지워 
+ first(별칭)열으로 출력하고, job_title의 'Manager'를 'Alba' 고쳐 second(별칭)
+열로 출력하시오.
+  1 select job_title as before , replace(job_title,'Sales','') as first,
+  2  replace(job_title,'Manager','Alba') as second  from jobs;
+
+ ★LPAD, RPAD함수  //  데이터의 빈 공간을 특정 문자로 채우는 함수
+
+★★★★Manager★★★★
+
+ select 'Manager', lpad('Manager',13,'★') as left,
+       rpad('Manager',13,'☆') as right, lpad('Manager',13) as bleft,
+       rpad('Manager',13) as bright from jobs;      
+
+
+★ concat함수  //  두 문자열을 합칠때 사용
+
+문제18>job_title열  max_salary열의 데이터를 합쳐, 'before'열로 별칭해 출력하고,
+중간에 ' : '을 넣어  'after'별칭의 열로 출력하시오.
+
+select concat(job_title, max_salary) as before,  concat(job_title, concat(':',max_salary)) as after
+from jobs;
+
+select job_title || min_salary as before,  job_title || ':' || min_salary as after from jobs;
+
+
+
+★ round함수   반올림 처리 함수
+예) 1234.5678    
+     -1 :  자연수 첫번쨰자리를 0  ---> 1230
+     -2 :  자연수 첫번쨰, 두번째 자리를 0  ---> 1200
+     -3 :  자연수 첫번쨰, 두번째, 세번째 자리를 0  ---> 1000
+      0 : 소수점 첫째자리를 반올림   --> 1235
+      1 : 소수점 둘째자리를 반올림   --> 1234.6
+      2 : 소수점 세째자리를 반올림   --> 1234.57
+      3 : 소수점 네째자리를 반올림   --> 1234.568
+아래 예제를 통해 라운드함수의 자릿수를 확인해 보세요
+select min_salary as before, round(min_salary/3.4,2), round(min_salary/3.4,0),
+  2  round(min_salary/3.14,-2) from jobs;
+
+  ★ mod함수  //  나머지를 구하는 함수 
+    select  max_salary, mod(max_salary,3) as half
+     from jobs;
+
+
+★sysdate함수 : 날짜 데이터를 다루는 날짜 함수
+ select sysdate as now, sysdate-1 as yesterday, 
+  sysdate+1 as tomorrow  from job_history;
+
+★add_months함수 : 몇개월 이후 날짜를 구하는 함수
+  select start_date as now,  add_months(start_date,365) 
+  from job_history;
+
+
+★months_between함수 : 두 날짜 간의 개월 수 차이를 구하는 함수
+
+1 select start_date,end_date,months_between(end_date,start_date) as exep
+2  from job_history;
+
+
+★자료형 변환
+to_char
+
+
+select start_date, 
+    to_char(start_date,'month', 'nls_date_language=korean') as kor,
+    to_char(start_date,'month', 'nls_date_language=japanese')as jap,
+    to_char(start_date,'month', 'nls_date_language=english')as eng
+    from job_history;
+ 
+
+
+
+
+
+
+
+
+    select start_date, 
+    to_char(start_date,'day')as day,
+    to_char(start_date,'w')as w,
+    to_char(start_date,'yyyy')as yyyy,
+    to_char(start_date,'mm')as mm,
+    to_char(start_date,'cc')as cc
+    from job_history;
+
+START_DA MM   MONTH            DD   DY       DAY                      W  CC
+-------- ---- ---------------- ---- -------- ------------------------ -- ----
+97/09/21 09   9월              21   일       일요일                   3  20
+01/10/28 10   10월             28   일       일요일                   4  21
+01/01/13 01   1월              13   토       토요일                   2  21
+06/03/24 03   3월              24   금       금요일                   4  21
+07/01/01 01   1월              01   월       월요일                   1  21
+06/03/24 03   3월              24   금       금요일                   4  21
+07/01/01 01   1월              01   월       월요일                   1  21
+95/09/17 09   9월              17   일       일요일                   3  20
+02/07/01 07   7월              01   월       월요일                   1  21
+04/02/17 02   2월              17   화       화요일                   3  21
+
+★DECODE 함수 : 기준이 되는 데이터를 먼저지정한 후 
+해당 데이터 값에 따라 다른 결과 값을 내보내는 함수
+(조건에 따라 실행하는 IF ~ ELSE와 비슷함.)
+ 형식 :   DECODE(열 또는 데이터, 연산이나 함수 결과, 조건1, 조건1참일가 때 반환결과,    조건2, 조건2가 참일때 반환결과, 조건3, 조건3가 참일때 반환결과, 위 조건에 해당되지 않을때
+반환할 결과)
+        
+문제20> (DECODE 함수 사용) jobs 테이블의 job_title 중 'President'의 max_salary를 2.5배 인상,
+       'Programmer'의  max_salary를 1.5배 인상, 나머지는 0.02인상하는 테이블을 
+UPSALE열로  출력하시오.
+
+select job_title, max_salary, DECODE(job_title,'President',max_salary*2.5,
+'Programmer', max_salary*1.5, max_salary*1.02) as upsal
+from jobs;
+
+
+문제21> (DECODE 함수 사용) jobs 테이블의 job_title 중 'President'의 min_salary를 20% 삭감 ,   'Programmer'의  min_salary를 2배 인상, 'Sales Manager'의 min_salary를 8% 삭감 , 'Stock Manager'의 min_salary는 현행유지,  나머지는 2%삭감하는 테이블을 NEWSALE별칭 열로 출력하시오.
+
+select job_title,min_salary, DECODE(job_title,'President',min_salary*0.8,
+'Programmer', min_salary*2, 'Sales Manager',min_salary*98.02,
+'Stock Manager',min_salary*1,min_salary*0.98) as newsale
+ from jobs;
+
+★case 함수 : 
+ 형식 :  
+ case 열 또는 데이터
+ when 조건1 then 조건1가 참일때 반환결과
+ when 조건2 then 조건2가 참일때 반환결과
+ when 조건3 then 조건3가 참일때 반환결과
+  else  위 조건에 해당되지 않을때 반환할 결과
+end  as 별칭
+
+문제22)  (case 함수 사용) jobs 테이블의 job_title 중 'President'의 max_salary를 2.5배 인상,   'Programmer'의  max_salary를 1.5배 인상, 나머지는 0.02(x0.98)
+인하하는 테이블을 UPSALE열로  출력하시오.
+
+select job_title, max_salary, 
+case job_title
+when 'President' then max_salary*2.5
+when 'Programmer' then max_salary*1.5
+else max_salary*0.98
+end as UPSALE
+from jobs;
+
+
+★ sum 함수 : 
+ 문제23) jobs테이블의 max_salary의 값을 모두 합하시오
+
+select  sum(max_salary)   from jobs;
+
+
+
+문제24) jobs테이블의 job_title이 '~manager'로 끝나는 직함의 max_salary 
+   값을 모두 합하시오
+
+
+
+  select sum(max_salary) from jobs
+  where job_title like '%Manager';
+
+
+
+
+
+★ count 함수 : 데이터 개수를 구해주는 함수
+
+문제25) jobs테이블의 개수를 출력하시
+
+select count(*)
+from jobs;
+
+
+문제26) jobs테이블의 max_salary값이  10000이상인 
+          데이터의 개수를 출력하시오 
+  select count(*)
+  from jobs
+  where max_salary>=10000;
+
+
+
+
+★ max 함수 : 최대값을 구하는 함수
+★ min 함수 : 최소값을 구하는 함수
+
+
+
+문제27) jobs테이블의 max_salary값 중 가장 큰 값을 출력하시오 
+ select max(max_salary)
+  from jobs;
+
+
+
+문제28) jobs테이블의 min_salary값 중 가장 작은 값을 출력하시오 
+
+  select min(min_salary)
+   from jobs;
+
+
+
+
+★ avg 함수 : 평균을 구하는 함수
+
+문제29) jobs테이블의 max_salary의 평균값을 출력하시오.(소수 둘째자리까지 출력)
+  
+   select round(avg(max_salary),2) as jarisu
+   from jobs;
+
+
+
+문제30) jobs테이블에서 job_title이 '~Manager'로 끝나는 직함의 max_salary 
+   값의 평균을 출력하시오.(소수 둘째자리까지 출력)
+  select avg(max_salary)
+    from jobs
+    where job_title like '%Manager';
