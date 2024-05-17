@@ -1,0 +1,18 @@
+SQL> create table eta
+  2  as select*from jobs;
+
+
+SQL> insert into eta
+  2  (job_id,job_title,min_salary,max_salary)values('AD_PRES','KING',20000,40000);
+
+SQL> insert into eta
+  2  (job_id,job_title,min_salary,max_salary)values('FD_PRES','QUEEN',10000,125000);
+
+SQL> insert into eta
+  2  values('FD_PRES','QUEEN',10000,125000);
+
+insert inro newjeans
+    values('KK_KKK','KING',1000,12000);
+
+SQL> insert into eta
+  2  values('SAR_ENG','manager',null,null);
