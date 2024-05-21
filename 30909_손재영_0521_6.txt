@@ -1,0 +1,23 @@
+update문 : 테이블에 있는 데이터 수정하기
+update 테이블먕 set 변경할 열1 =데이터 , 변경할 열n=데이터
+where 데이터를 변경할 대상 행을 선멸하기 위한 조건1		
+
+문제 31> min_salary 값 전체를 9870으로 수정하시오
+SQL> update edps
+  2  set min_salary=9870;
+
+문제32> 새로운 테이블에서 job_title이 Manager 로 띁나는 max_salary 값을 7770으로 수정하시오
+SQL> update edps
+  2  set max_salary=7770
+  3  where job_title like '%Manager%';
+
+
+문제33>job_title의 Manager만 삭제해봐
+
+
+SQL> delete from edps
+  2  where job_title like '%Manager%';
+
+테이블삭제 해봐
+
+delete from edps
