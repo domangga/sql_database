@@ -1,0 +1,46 @@
+ALTER : 이미 생겅된 객체(테이블)를 변경할떼 사용
+
+SQL> create table abc(
+  2  섭명 varchar2(10),
+  3  DB number(3),
+  4  프로그래밍 number(3),
+  5  평가 varchar2(10));
+
+새로운 열을 추가할때 사용
+ALTER TABLE 테이블명
+ADD 열이름 아팁 선언;
+
+문제36> 몸무게 이름의 열을 추가하고 작성하시오
+
+
+특정 열을 삭제 할때 사용
+ALTER TABLE 테이블명
+DEOP COLUMN 열이름;
+
+ALTER TABLE abc
+ 2 DREOP COLUMN 몸무게
+
+열이름 을 변경할 할떄 사용
+ALTER TALBE 테이블명
+RENAME COLUMN (구) 열 TO 신(열)
+
+
+문제 37 그래픽 디잔인을 CGD 라고 열이름을 변경하고 프로그래밍을ㄴ PL로 열이름을 변경하시오
+ALTER TABLE abc
+RENAME COLUMN 그래픽 디자인 TO CGD;
+
+ALTER TABLE abc
+RENAME COLUMN 프로그래밍 TO PL' 
+
+테이블 이름을 변경할 할때 사용
+
+RENAME (구) 이름 YO (신)이름;
+문제38>현재 테이블이름을 다른 이름의 테이블로 변경하시오
+
+테이블을 삭제하는 DROP
+
+DROP TABLE 테이블명
+
+문제39> 현재 테이블을 삭제하시오
+
+DROP TABLE abc;
