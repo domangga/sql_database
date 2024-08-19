@@ -1,0 +1,39 @@
+create table 고객(
+고객번호 varchar(10) not null,
+이름 varchar(10) not null,
+비밀번호 varchar(10) not null,
+primary key(고객번호));
+
+create table 주문(
+주문번호 varchar(10) not null,
+고객번호 varchar(10) not null,
+주문일 varchar(18) not null,
+주문가격 decimal(15,2) not null,
+결제금액 varchar(18) not null,
+primary key (주문번호),
+foreign key (고객번호) references 고객 (고객번호));
+
+ - 열제목의 사이즈를 조절
+column 결제금액 format a10;
+col 결제금액 format a10;
+ - 원하는 테이블 출력
+select * from 테이블이름;
+
+
+INSERT INTO 고객 VALUES ('C01', '홍영준', '1454');
+INSERT INTO 고객 VALUES ('C07', '홍만호', '1234');
+INSERT INTO 고객 VALUES ('C02', '최민수', 'y234');
+INSERT INTO 고객 VALUES ('C03', '여인구', 'uu94');
+INSERT INTO 고객 VALUES  ('C04', '김성팔', 'pas1');
+INSERT INTO 고객 VALUES  ('C05', '이왕규', 'p234');
+
+INSERT INTO 주문 VALUES  (‘O101’, ‘C01', '1201', 1000, 100);
+INSERT INTO 주문 VALUES  (‘O102’, ‘C01’, '1203', 4500, 45);
+INSERT INTO 주문 VALUES  ('O103', 'C04', '1207', 1000, 1000);
+INSERT INTO 주문 VALUES  ('O104', 'C03', '1207', 5500, 550);
+INSERT INTO 주문 VALUES ('O105', 'C02', '0117', 8500, 850);
+INSERT INTO 주문 VALUES ('O106', 'C02', '0518', 2300, 230);
+INSERT INTO 주문 VALUES  ('O107', 'C04', '0721', 5000, 50);
+INSERT INTO 주문 VALUES ('O108', 'C01', '0522', 8300, 83);
+INSERT INTO 주문 VALUES  ('O109', 'C02', '0125', 4500, 450);
+INSERT INTO 주문 VALUES ('O110', 'C03', '0430', 9000, 90);
